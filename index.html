@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>令和８年度 新島大運動会</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@700;900&display=swap');
+
+  :root {
+    --navy:   #1a2e4a;
+    --ocean:  #2563a8;
+    --sky:    #5ba3d9;
+    --sand:   #f5efe6;
+    --white:  #ffffff;
+    --accent: #e05c2a;
+    --text:   #1a1a1a;
+    --muted:  #5a6a7a;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background: var(--sand);
+    color: var(--text);
+    line-height: 1.7;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(160deg, var(--navy) 0%, var(--ocean) 60%, var(--sky) 100%);
+    color: var(--white);
+    padding: 56px 24px 48px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    bottom: -2px; left: 0; right: 0;
+    height: 40px;
+    background: var(--sand);
+    clip-path: ellipse(55% 100% at 50% 100%);
+  }
+  .hero-eyebrow {
+    font-size: 0.78rem;
+    letter-spacing: 0.2em;
+    opacity: 0.75;
+    margin-bottom: 12px;
+  }
+  .hero h1 {
+    font-family: 'Noto Serif JP', serif;
+    font-size: clamp(1.8rem, 6vw, 3rem);
+    font-weight: 900;
+    line-height: 1.25;
+    margin-bottom: 24px;
+  }
+  .hero-meta {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 8px;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 12px;
+    padding: 16px 28px;
+    font-size: 1rem;
+    font-weight: 500;
+  }
+  .hero-meta .date {
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+
+  /* ── SECTIONS ── */
+  .section {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 48px 20px;
+  }
+  .section + .section {
+    border-top: 1px solid #d8cfc4;
+  }
+  .section-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    color: var(--ocean);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .section h2 {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 1.45rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 20px;
+  }
+
+  /* ── PROGRAM TABLE ── */
+  .program-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+  }
+  .program-table th {
+    background: var(--navy);
+    color: var(--white);
+    padding: 8px 12px;
+    text-align: left;
+    font-weight: 500;
+    font-size: 0.78rem;
+  }
+  .program-table td {
+    padding: 9px 12px;
+    border-bottom: 1px solid #e0d8ce;
+    vertical-align: middle;
+  }
+  .program-table tr:nth-child(even) td { background: rgba(255,255,255,0.6); }
+  .program-table .time {
+    font-weight: 700;
+    color: var(--ocean);
+    white-space: nowrap;
+    width: 70px;
+  }
+  .program-table .kyogi-name { font-weight: 500; }
+  .program-table .badge {
+    display: inline-block;
+    font-size: 0.68rem;
+    padding: 2px 7px;
+    border-radius: 20px;
+    background: var(--accent);
+    color: white;
+    font-weight: 700;
+    margin-left: 4px;
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+  .program-note {
+    font-size: 0.78rem;
+    color: var(--muted);
+    margin-top: 10px;
+  }
+
+  /* ── EVENTS GRID ── */
+  .events-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  @media (max-width: 500px) { .events-grid { grid-template-columns: 1fr; } }
+
+  .event-card {
+    background: var(--white);
+    border-radius: 10px;
+    padding: 18px 16px;
+    border-top: 4px solid var(--ocean);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  }
+  .event-card h3 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 8px;
+  }
+  .event-card ul {
+    list-style: none;
+    font-size: 0.8rem;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+  .event-card ul li::before {
+    content: '▸ ';
+    color: var(--ocean);
+    font-size: 0.75rem;
+  }
+
+  /* ── APPLY SECTION ── */
+  .apply-box {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 28px 24px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  }
+  .apply-methods {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin: 16px 0 20px;
+  }
+  @media (max-width: 500px) { .apply-methods { grid-template-columns: 1fr; } }
+  .method-card {
+    border: 2px solid var(--sky);
+    border-radius: 8px;
+    padding: 14px 16px;
+    text-align: center;
+  }
+  .method-num {
+    font-size: 0.7rem;
+    color: var(--ocean);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    margin-bottom: 4px;
+  }
+  .method-card p {
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--navy);
+  }
+  .deadline-block {
+    background: var(--sand);
+    border-radius: 8px;
+    padding: 14px 16px;
+    font-size: 0.85rem;
+    line-height: 1.9;
+  }
+  .deadline-block strong { color: var(--accent); }
+
+  .btn-apply {
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+    padding: 16px;
+    background: var(--accent);
+    color: var(--white);
+    text-align: center;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    transition: background 0.2s;
+  }
+  .btn-apply:hover { background: #c44d20; }
+
+  /* ── VENUE ── */
+  .venue-box {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 22px 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .venue-box p { font-size: 0.9rem; line-height: 1.9; color: var(--muted); }
+  .venue-box strong { color: var(--navy); }
+  .venue-img-placeholder {
+    margin-top: 16px;
+    background: #e8f0f8;
+    border: 2px dashed var(--sky);
+    border-radius: 8px;
+    height: 180px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--sky);
+    font-size: 0.82rem;
+    gap: 6px;
+  }
+  .venue-img-placeholder .icon { font-size: 2rem; }
+
+  /* ── CONTACT ── */
+  .contact-box {
+    background: var(--navy);
+    color: var(--white);
+    border-radius: 12px;
+    padding: 24px 22px;
+  }
+  .contact-box p { font-size: 0.88rem; line-height: 2; opacity: 0.85; }
+  .contact-box a { color: var(--sky); }
+  .contact-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    opacity: 0.55;
+    margin-bottom: 2px;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 24px;
+    font-size: 0.75rem;
+    color: var(--muted);
+    border-top: 1px solid #d8cfc4;
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <p class="hero-eyebrow">NIIJIMA GRAND ATHLETIC MEET 2026</p>
+  <h1>令和８年度<br>新島大運動会</h1>
+  <div class="hero-meta">
+    <span class="date">令和８年10月４日（日）</span>
+    <span>新島高等学校 校庭</span>
+  </div>
+</div>
+
+<!-- PROGRAM -->
+<div class="section">
+  <p class="section-label">Schedule</p>
+  <h2>タイムスケジュール</h2>
+  <table class="program-table">
+    <thead>
+      <tr>
+        <th>開始予定</th>
+        <th>種目</th>
+        <th>参加者</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="time">08:30</td><td class="kyogi-name">開会式（新小鼓笛隊パレード）</td><td>全員</td></tr>
+      <tr><td class="time">08:45</td><td class="kyogi-name">応援パフォーマンス</td><td>高校生</td></tr>
+      <tr><td class="time">09:00</td><td class="kyogi-name">宝拾い</td><td>乳幼児・園児・75歳以上</td></tr>
+      <tr><td class="time">09:15</td><td class="kyogi-name">チェッコリ玉入れ</td><td>小学生</td></tr>
+      <tr><td class="time">09:35</td><td class="kyogi-name">１００ｍ走</td><td>高校生</td></tr>
+      <tr><td class="time">09:50</td><td class="kyogi-name">新島なぞなぞ２択クイズ</td><td>応募者</td></tr>
+      <tr><td class="time">10:20</td><td class="kyogi-name">借り人競争</td><td>高校生</td></tr>
+      <tr><td class="time">10:40</td><td class="kyogi-name">大縄跳び <span class="badge">事務局競技</span></td><td>応募選手</td></tr>
+      <tr><td class="time">11:00</td><td class="kyogi-name">障害物競走</td><td>高校生</td></tr>
+      <tr><td class="time">11:15</td><td class="kyogi-name">綱引き <span class="badge">事務局競技</span></td><td>応募選手</td></tr>
+      <tr><td class="time">11:30</td><td class="kyogi-name">棒引き</td><td>高校生</td></tr>
+      <tr><td class="time">11:45</td><td class="kyogi-name">玉入れ <span class="badge">事務局競技</span></td><td>応募選手</td></tr>
+      <tr><td class="time">12:05</td><td class="kyogi-name">全員リレー</td><td>高校生</td></tr>
+      <tr><td class="time">12:20</td><td class="kyogi-name">ゴーゴー！６人リレー <span class="badge">事務局競技</span></td><td>応募選手</td></tr>
+      <tr><td class="time">12:35</td><td class="kyogi-name">閉会式</td><td>全員</td></tr>
+    </tbody>
+  </table>
+  <p class="program-note">※ 競技間に5分のインターバルあり。進行状況により前後する場合があります。</p>
+</div>
+
+<!-- EVENTS -->
+<div class="section">
+  <p class="section-label">Events</p>
+  <h2>事務局競技のご案内</h2>
+  <div class="events-grid">
+    <div class="event-card">
+      <h3>🎯 玉入れ</h3>
+      <ul>
+        <li>1チーム選手5名＋補欠1〜2名</li>
+        <li>予選：30秒1回戦制</li>
+        <li>決勝：20秒×2回戦の合計数</li>
+        <li>上位3チームを表彰</li>
+        <li>平均年齢12歳以下・65歳以上はかご低め設定</li>
+      </ul>
+    </div>
+    <div class="event-card">
+      <h3>🏃 ゴーゴー！６人リレー</h3>
+      <ul>
+        <li>100m×6人のリレー</li>
+        <li>1チーム走者6名＋補欠1〜2名</li>
+        <li>6チーム以上は2ブロックに分けて実施</li>
+        <li>小学生の申込があれば小学生の部を設置</li>
+      </ul>
+    </div>
+    <div class="event-card">
+      <h3>💪 綱引き</h3>
+      <ul>
+        <li>トーナメント方式</li>
+        <li>男性＝1人・女性＝0.5人換算、合計5人以内</li>
+        <li>綱が4m移動したとき勝敗決定</li>
+        <li>1チーム最大10名（補欠含め12名）</li>
+      </ul>
+    </div>
+    <div class="event-card">
+      <h3>🪢 大縄跳び</h3>
+      <ul>
+        <li>跳び手5名＋回し手2名（最低7名）</li>
+        <li>最大11名まで・入れ替え自由</li>
+        <li>制限時間2分・連続回数を記録</li>
+        <li>予選上位6チームが決勝進出</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- APPLY -->
+<div class="section">
+  <p class="section-label">Entry</p>
+  <h2>参加申込方法</h2>
+  <div class="apply-box">
+    <p style="font-size:0.88rem;color:var(--muted);margin-bottom:4px;">事務局競技（玉入れ・リレー・綱引き・大縄跳び）へのチーム参加申込はこちら。</p>
+    <div class="apply-methods">
+      <div class="method-card">
+        <p class="method-num">方法 ①</p>
+        <p>オンライン申込<br>（QRコード・下のボタン）</p>
+      </div>
+      <div class="method-card">
+        <p class="method-num">方法 ②</p>
+        <p>教育委員会窓口<br>設置の紙申込書</p>
+      </div>
+    </div>
+    <div class="deadline-block">
+      <strong>📅 参加申込締切：令和８年９月９日（水）</strong><br>
+      選手変更締切：令和８年９月18日（金）<br>
+      当日変更：補欠との交代のみ可能
+    </div>
+    <a class="btn-apply" href="https://forms.gle/EfT3o1A9Pm7cPgMF9" target="_blank">
+      オンラインで申し込む →
+    </a>
+  </div>
+</div>
+
+<!-- VENUE -->
+<div class="section">
+  <p class="section-label">Venue</p>
+  <h2>会場案内</h2>
+  <div class="venue-box">
+    <p>
+      <strong>メイン会場：</strong>新島高等学校 校庭<br>
+      <strong>駐車場：</strong>新島中学校校庭をご利用いただけます。
+    </p>
+    <div class="venue-img-placeholder">
+      <span class="icon">🗺️</span>
+      <span>会場図・入口案内図をここに掲載予定</span>
+      <span style="font-size:0.72rem;opacity:0.6;">（Googleサイト編集画面で画像を差し替えてください）</span>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div class="section">
+  <p class="section-label">Contact</p>
+  <h2>お問い合わせ</h2>
+  <div class="contact-box">
+    <p class="contact-label">主催・事務局</p>
+    <p>
+      <strong style="font-size:1rem;">新島村教育委員会</strong><br>
+      📞 <a href="tel:0499250203">04992-5-0203</a><br>
+      ✉️ <a href="mailto:kyoiku3@niijima.com">kyoiku3@niijima.com</a>
+    </p>
+  </div>
+</div>
+
+<footer>
+  © 令和８年度 新島大運動会　新島村教育委員会
+</footer>
+
+</body>
+</html>
